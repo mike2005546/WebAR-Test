@@ -1,27 +1,70 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 		<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
 		<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const sceneEl = document.querySelector('a-scene');
+				
+				let arSystem;
+				sceneEl.addEventListener('loaded', function () {
+					arSystem = sceneEl.systems["mindar-image-system"];
+				});
+
+				const mintiaTarget = document.querySelector('#mintia');
+
+				// sceneEl
+				// arReady event triggered when ready
+				sceneEl.addEventListener("arReady", (event) => {
+					// console.log("MindAR is ready")
+				});
+				// arError event triggered when something went wrong. Mostly browser compatbility issue
+				sceneEl.addEventListener("arError", (event) => {
+					// console.log("MindAR failed to start")
+				});
+
+				// haloTarget
+				// detect target found
+				mintiaTarget.addEventListener("targetFound", event => {
+					console.log("target found");
+				});
+				// detect target lost
+				mintiaTarget.addEventListener("targetLost", event => {
+					console.log("target lost");
+				});
+				// detect click event
+				mintiaTarget.addEventListener("click", event => {
+					console.log("target clicked");
+				});
+			});
+		</script>
 	</head>
 
 	<body>
 		<a-scene
-			mindar-image="imageTargetSrc: https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/models/halo/halo.mind; uiScanning: no;"
+			mindar-image="imageTargetSrc: https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/minds/mintia/mintia.mind; uiScanning: no;"
 			color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
-			device-orientation-permission-ui="enabled: false">
+			device-orientation-permission-ui="enabled: true">
 			<a-assets>
-				<a-asset-item id="helo"
-					src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/models/halo/scene.gltf">
-				</a-asset-item>
+				<img id="memeTop" src="https://images.squarespace-cdn.com/content/v1/5fd56e513c1f6275809ed7d1/1633502681708-2N00GGCCYRTPVONA8KBF/Cranky+cat.png" />
+				<img id="memeLeft" src="https://m.media-amazon.com/images/I/51WHgHxF5YL._AC_UF1000,1000_QL80_.jpg" />
+				<img id="memeRight" src="https://ih1.redbubble.net/image.5222293609.8488/st,small,507x507-pad,600x600,f8f8f8.jpg" />
+				<!--a-asset-item id="mintia"
+					src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/models/mintia/.gltf">
+				</a-asset-item-->
 			</a-assets>
 
 			<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
 			<a-entity mindar-image-target="targetIndex: 0">
-				<a-gltf-model rotation="0 0 0 " position="0 -1 0.1" scale="0.5 0.5 0.5" src="#helo" animation-mixer>
+				<a-plane src="#memeTop" position="0 1 0.1" height="1" width="1" rotation="0 0 0"></a-plane>
+				<a-plane src="#memeLeft" position="1 0 0.1" height="1" width="1" rotation="0 0 0"></a-plane>
+				<a-plane src="#memeRight" position="-1 0 0.1" height="1" width="1" rotation="0 0 0"></a-plane>
+				<!--a-gltf-model rotation="0 0 0 " position="0 -1 0.1" scale="0.5 0.5 0.5" src="#mintia" animation-mixer-->
 			</a-entity>
 		</a-scene>
 	</body>
