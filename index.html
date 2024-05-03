@@ -48,11 +48,9 @@
 		<a-scene
 			mindar-image="imageTargetSrc: https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/minds/mintia/mintia.mind; uiScanning: no;"
 			color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
-			device-orientation-permission-ui="enabled: true">
+			device-orientation-permission-ui="enabled: false">
 			<a-assets>
-				<img id="memeTop" src="https://images.squarespace-cdn.com/content/v1/5fd56e513c1f6275809ed7d1/1633502681708-2N00GGCCYRTPVONA8KBF/Cranky+cat.png" />
-				<img id="memeLeft" src="https://wallpapers.com/images/hd/thumbs-up-cat-meme-7avdmx4bbkkqcrj2.jpg" />
-				<img id="memeRight" src="https://mystickermania.com/cdn/stickers/memes/cat-hands-meme-512x512.png" />
+				<video id="memeLeft" loop="true" src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuMeme.webm" />
 				<!--a-asset-item id="mintia"
 					src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/models/mintia/.gltf">
 				</a-asset-item-->
@@ -61,9 +59,9 @@
 			<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
 			<a-entity mindar-image-target="targetIndex: 0">
-				<a-plane src="#memeTop" position="0 1 0" rotation="0 0 0"></a-plane>
-				<a-plane src="#memeLeft" position="1 0 0" rotation="0 0 0"></a-plane>
-				<a-plane src="#memeRight" position="-1 0 0" rotation="0 0 0"></a-plane>
+				<!--a-plane src="#memeTop" position="0 1 0" rotation="0 0 0"></a-plane-->
+				<a-video src="#memeLeft" position="1 0 0" rotation="0 0 0"></a-plane>
+				<!--a-plane src="#memeRight" position="-1 0 0" rotation="0 0 0"></a-plane-->
 				<!--a-gltf-model rotation="0 0 0 " position="0 -1 0.1" scale="0.5 0.5 0.5" src="#mintia" animation-mixer-->
 			</a-entity>
 		</a-scene>
