@@ -35,11 +35,9 @@
 					console.log("target found");
 
 					// Play Video
-					let fuyuLeftVideo = document.querySelector('#fuyuLeft');
-					let fuyuRightVideo = document.querySelector('#fuyuRight');
+					let fuyuMemeVideo = document.querySelector('#fuyuMeme');
 
-					fuyuLeftVideo.play();
-					fuyuRightVideo.play();
+					fuyuMemeVideo.play();
 				});
 
 				// detect target lost
@@ -47,16 +45,22 @@
 					console.log("target lost");
 
 					// Pause Video
-					let fuyuLeftVideo = document.querySelector('#fuyuLeft');
-					let fuyuRightVideo = document.querySelector('#fuyuRight');
+					let fuyuMemeVideo = document.querySelector('#fuyuMeme');
 
-					fuyuLeftVideo.pause();
-					fuyuRightVideo.pause();
+					fuyuMemeVideo.pause();
 				});
 
 				// detect click event
 				target.addEventListener("click", event => {
 					console.log("target clicked");
+
+					let fuyuMemeVideo = document.querySelector('#fuyuMeme');
+
+					if (fuyuMemeVideo.playing) {
+						fuyuMemeVideo.pause();
+					} else {
+						fuyuMemeVideo.play();
+					}
 				});
 			});
 		</script>
@@ -64,12 +68,11 @@
 
 	<body>
 		<a-scene
-			mindar-image="imageTargetSrc: https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/minds/mintia/mintia.mind; uiScanning: no;"
+			mindar-image="imageTargetSrc: https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/minds/fuyu.mind; uiScanning: no;"
 			color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
 			device-orientation-permission-ui="enabled: false">
 			<a-assets>
-				<video id="fuyuLeft" loop="true" autoplay webkit-playsinline playsinline src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuLeft.webm" />
-				<video id="fuyuRight" loop="true" autoplay webkit-playsinline playsinline src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuRight.webm" />
+				<video id="fuyuMeme" loop="true" autoplay webkit-playsinline playsinline src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuMeme.webm" />
 				<!--a-asset-item id="mintia"
 					src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/models/mintia/.gltf">
 				</a-asset-item-->
@@ -79,8 +82,7 @@
 
 			<a-entity id="target" mindar-image-target="targetIndex: 0">
 				<!--a-plane src="#memeTop" position="0 1 0" rotation="0 0 0"></a-plane-->
-				<a-video src="#fuyuLeft" position="-0.4 0 0" rotation="0 0 0" width="1.0" height="0.6"></a-video>
-				<a-video src="#fuyuRight" position="0.4 0 0" rotation="0 0 0" width="1.0" height="0.6"></a-video>
+				<a-video src="#fuyuMeme" position="0 0 0.1" rotation="0 0 0" width="1.0" height="0.6"></a-video>
 				<!--a-plane src="#memeRight" position="1 0 0" rotation="0 0 0"></a-plane-->
 				<!--a-gltf-model rotation="0 0 0 " position="0 -1 0.1" scale="0.5 0.5 0.5" src="#mintia" animation-mixer-->
 			</a-entity>
