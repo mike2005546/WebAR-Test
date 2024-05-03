@@ -16,12 +16,23 @@
 					arSystem = sceneEl.systems["mindar-image-system"];
 				});
 
-				const mintiaTarget = document.querySelector('#mintia');
-
 				// sceneEl
 				// arReady event triggered when ready
 				sceneEl.addEventListener("arReady", (event) => {
 					console.log("MindAR is ready")
+				});
+
+				// arError event triggered when something went wrong. Mostly browser compatbility issue
+				sceneEl.addEventListener("arError", (event) => {
+					// console.log("MindAR failed to start")
+				});
+
+				//target
+				const target = document.querySelector('#target');
+
+				// detect target found
+				target.addEventListener("targetFound", event => {
+					console.log("target found");
 
 					// Play Video
 					let fuyuLeftVideo = document.querySelector('#fuyuLeft');
@@ -30,22 +41,21 @@
 					fuyuLeftVideo.play();
 					fuyuRightVideo.play();
 				});
-				// arError event triggered when something went wrong. Mostly browser compatbility issue
-				sceneEl.addEventListener("arError", (event) => {
-					// console.log("MindAR failed to start")
+
+				// detect target lost
+				target.addEventListener("targetLost", event => {
+					console.log("target lost");
+
+					// Pause Video
+					let fuyuLeftVideo = document.querySelector('#fuyuLeft');
+					let fuyuRightVideo = document.querySelector('#fuyuRight');
+
+					fuyuLeftVideo.pause();
+					fuyuRightVideo.pause();
 				});
 
-				// mintiaTarget
-				// detect target found
-				mintiaTarget.addEventListener("targetFound", event => {
-					console.log("target found");
-				});
-				// detect target lost
-				mintiaTarget.addEventListener("targetLost", event => {
-					console.log("target lost");
-				});
 				// detect click event
-				mintiaTarget.addEventListener("click", event => {
+				target.addEventListener("click", event => {
 					console.log("target clicked");
 				});
 			});
@@ -67,10 +77,10 @@
 
 			<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-			<a-entity mindar-image-target="targetIndex: 0">
+			<a-entity id="target" mindar-image-target="targetIndex: 0">
 				<!--a-plane src="#memeTop" position="0 1 0" rotation="0 0 0"></a-plane-->
-				<a-video src="#fuyuLeft" position="-1 0 0" rotation="0 0 0" width="1.0" height="0.6"></a-video>
-				<a-video src="#fuyuRight" position="1 0 0" rotation="0 0 0" width="1.0" height="0.6"></a-video>
+				<a-video src="#fuyuLeft" position="-0.4 0 0" rotation="0 0 0" width="1.0" height="0.6"></a-video>
+				<a-video src="#fuyuRight" position="0.4 0 0" rotation="0 0 0" width="1.0" height="0.6"></a-video>
 				<!--a-plane src="#memeRight" position="1 0 0" rotation="0 0 0"></a-plane-->
 				<!--a-gltf-model rotation="0 0 0 " position="0 -1 0.1" scale="0.5 0.5 0.5" src="#mintia" animation-mixer-->
 			</a-entity>
