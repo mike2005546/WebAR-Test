@@ -3,6 +3,7 @@
 	<head>
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
 		<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
 		<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
@@ -20,14 +21,21 @@
 				// sceneEl
 				// arReady event triggered when ready
 				sceneEl.addEventListener("arReady", (event) => {
-					// console.log("MindAR is ready")
+					console.log("MindAR is ready")
+
+					// Play Video
+					let fuyuLeftVideo = document.querySelector('#fuyuLeft');
+					let fuyuRightVideo = document.querySelector('#fuyuRight');
+
+					fuyuLeftVideo.play();
+					fuyuRightVideo.play();
 				});
 				// arError event triggered when something went wrong. Mostly browser compatbility issue
 				sceneEl.addEventListener("arError", (event) => {
 					// console.log("MindAR failed to start")
 				});
 
-				// haloTarget
+				// mintiaTarget
 				// detect target found
 				mintiaTarget.addEventListener("targetFound", event => {
 					console.log("target found");
@@ -50,8 +58,8 @@
 			color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
 			device-orientation-permission-ui="enabled: false">
 			<a-assets>
-				<video id="fuyuLeft" loop="true" src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuLeft.webm" loop autoplay muted/>
-				<video id="fuyuRight" loop="true" src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuRight.webm" loop autoplay muted/>
+				<video id="fuyuLeft" loop="true" autoplay webkit-playsinline playsinline src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuLeft.webm" />
+				<video id="fuyuRight" loop="true" autoplay webkit-playsinline playsinline src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuRight.webm" />
 				<!--a-asset-item id="mintia"
 					src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/models/mintia/.gltf">
 				</a-asset-item-->
