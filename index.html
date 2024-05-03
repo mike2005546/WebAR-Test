@@ -50,7 +50,8 @@
 			color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
 			device-orientation-permission-ui="enabled: false">
 			<a-assets>
-				<video id="memeLeft" loop="true" src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuMeme.webm" />
+				<video id="fuyuLeft" loop="true" src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuLeft.webm" loop autoplay muted/>
+				<video id="fuyuRight" loop="true" src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/videos/FuyuRight.webm" loop autoplay muted/>
 				<!--a-asset-item id="mintia"
 					src="https://raw.githubusercontent.com/mike2005546/WebAR-Test/main/models/mintia/.gltf">
 				</a-asset-item-->
@@ -60,8 +61,9 @@
 
 			<a-entity mindar-image-target="targetIndex: 0">
 				<!--a-plane src="#memeTop" position="0 1 0" rotation="0 0 0"></a-plane-->
-				<a-video src="#memeLeft" position="1 0 0" rotation="0 0 0"></a-plane>
-				<!--a-plane src="#memeRight" position="-1 0 0" rotation="0 0 0"></a-plane-->
+				<a-video src="#fuyuLeft" position="-1 0 0" rotation="0 0 0" width="1.0" height="0.6"></a-video>
+				<a-video src="#fuyuRight" position="1 0 0" rotation="0 0 0" width="1.0" height="0.6"></a-video>
+				<!--a-plane src="#memeRight" position="1 0 0" rotation="0 0 0"></a-plane-->
 				<!--a-gltf-model rotation="0 0 0 " position="0 -1 0.1" scale="0.5 0.5 0.5" src="#mintia" animation-mixer-->
 			</a-entity>
 		</a-scene>
